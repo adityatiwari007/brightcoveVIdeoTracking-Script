@@ -10,7 +10,7 @@
  * can be dispatched and they can be received in the main window.
  *
  * @author yuhui
- * @version 1
+ * @version 1.1.0
  *
  * @doc Brightcove Player development overview https://player.support.brightcove.com/coding-topics/overview-player-api.html
  * @doc Brightcove Player API https://docs.brightcove.com/brightcove-player/current-release/Player.html
