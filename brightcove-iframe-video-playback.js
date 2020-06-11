@@ -48,9 +48,15 @@ function handlePlaybackEvent_(event) {
       state: state,
       eventInit: eventInit,
     };
+
+    // IMPORTANT!
+    // replace '*' with the actual origin that should receive the message
+    // e.g. 'https://www.mysite.com:80'
+    var targetOrigin = '*';
+
     // Brightcove only allows string messages to be posted,
     // so stringify the message object
-    window.postMessage(JSON.stringify(message), '*');
+    window.postMessage(JSON.stringify(message), targetOrigin);
     // handle the message in the parent window appropriately
   }
 }
