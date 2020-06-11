@@ -38,8 +38,21 @@ function handlePlaybackEvent_(event) {
     detail: eventDetail,
   };
 
-  var customEvent = new CustomEvent(state, eventInit);
-  window.frameElement.dispatchEvent(customEvent);
+  if (window.frameElement) {
+    // the player is in a Brightcove experience --> use CustomEvent
+    var customEvent = new CustomEvent(state, eventInit);
+    window.frameElement.dispatchEvent(customEvent);
+  } else {
+    // the player is embedded in the web page directly --> use postMessage
+    var message = {
+      state: state,
+      eventInit: eventInit,
+    };
+    // Brightcove only allows string messages to be posted,
+    // so stringify the message object
+    window.postMessage(JSON.stringify(message), '*');
+    // handle the message in the parent window appropriately
+  }
 }
 
 /**
