@@ -39,25 +39,25 @@ function handlePlaybackEvent_(event) {
   };
 
   if (window.frameElement) {
-    // the player is in a Brightcove experience --> use CustomEvent
+    // The player is in a Brightcove experience --> use CustomEvent
     var customEvent = new CustomEvent(state, eventInit);
     window.frameElement.dispatchEvent(customEvent);
   } else {
-    // the player is embedded in the web page directly --> use postMessage
+    // The player is embedded in the web page directly --> use postMessage
     var message = {
       state: state,
       eventInit: eventInit,
     };
 
     // IMPORTANT!
-    // replace '*' with the actual origin that should receive the message
-    // e.g. 'https://www.mysite.com:80'
+    // Replace '*' with the actual origin that should receive the message.
+    // E.g. 'https://www.mysite.com:80'.
     var targetOrigin = '*';
 
     // Brightcove only allows string messages to be posted,
-    // so stringify the message object
+    // so stringify the message object.
     window.postMessage(JSON.stringify(message), targetOrigin);
-    // handle the message in the parent window appropriately
+    // Handle the message in the parent window appropriately.
   }
 }
 
